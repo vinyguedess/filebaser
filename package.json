@@ -1,0 +1,17 @@
+{
+  "name": "doc-file",
+  "version": "0.7.5",
+  "description": "Database simulator based on MongoDB",
+  "license": "MIT",
+  "main": "index.php",
+  "dependencies": {
+    "uniqid": "^4.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "node ./node_modules/.bin/_mocha --reporter spec --ui tdd ./tests/"
+  }
+}
