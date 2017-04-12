@@ -1,3 +1,3 @@
 
 
-module.exports = require('./src/DocFile');
+module.exports = require('./src/FileBaser');
