@@ -2,12 +2,9 @@ language: node_js
 node_js:
   - "6"
 
-before_script:
-  - npm install
-
 deploy:
+  provider: npm
+  email: "viniciusgued@gmail.com"
+  api_key: "11985a04-8b27-461f-a11f-cfd9031ed992"
   on:
     branch: master
-    provider: npm
-    email: "viniciusgued@gmail.com"
-    api_key: "11985a04-8b27-461f-a11f-cfd9031ed992"
