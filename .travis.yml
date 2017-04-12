@@ -4,3 +4,10 @@ node_js:
 
 before_script:
   - npm install
+
+deploy:
+  on:
+    branch: master
+    provider: npm
+    email: "viniciusgued@gmail.com"
+    api_key: "11985a04-8b27-461f-a11f-cfd9031ed992"

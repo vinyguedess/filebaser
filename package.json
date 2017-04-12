@@ -1,6 +1,6 @@
 {
   "name": "filebaser",
-  "version": "0.7.9",
+  "version": "0.7.12",
   "description": "Database simulator based on MongoDB",
   "keywords": ["database", "mongodb", "filebase"],
   "license": "MIT",
