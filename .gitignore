@@ -1,6 +1,7 @@
 # Application folders and files
 file-baser.json
 node_modules/
+npm-debug.*
 
 # OS and IDE folders and files
 .idea/

@@ -1,8 +1,8 @@
 {
   "name": "filebaser",
-  "version": "0.7.12",
+  "version": "0.7.13",
   "description": "Database simulator based on MongoDB",
-  "keywords": ["database", "mongodb", "filebase"],
+  "keywords": ["database", "mongodb", "mongoose"],
   "license": "MIT",
   "main": "index.php",
   "repository": "vinyguedess/filebaser",
