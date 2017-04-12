@@ -1,11 +1,11 @@
 const assert = require('chai').assert;
 
-const DocFile = require('./../src/DocFile'),
+const FileBaser = require('./../src/FileBaser'),
     Collection = require('./../src/Collection');
 
 describe('CollectionTest', () => {
 
-    let db = new DocFile('doc-file.json');
+    let db = new FileBaser('file-baser.json');
     db.addCollection('datalist');
 
     describe('testInsertingDataIntoCollection', () => {

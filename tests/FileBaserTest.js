@@ -1,12 +1,12 @@
 const assert = require('chai').assert;
 
-const DocFile = require('./../src/DocFile'),
+const FileBaser = require('./../src/FileBaser'),
     Collection = require('./../src/Collection');
 
 describe('DocFileTest', () => {
 
     describe('testAddingCollection', () => {
-        let db = new DocFile('doc-file.json');
+        let db = new FileBaser('file-baser.json');
         let collection = db.addCollection('datalist');
 
         it ('Should confirm collection is instance of Collection', () => {
@@ -19,7 +19,7 @@ describe('DocFileTest', () => {
     });
 
     describe('testGettingCollection', () => {
-        let db = new DocFile('doc-file.json'),
+        let db = new FileBaser('file-baser.json'),
             collection = db.addCollection('datalist');
 
         it ('Should confirm collection is instance of Collection', () => {

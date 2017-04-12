@@ -1,5 +1,5 @@
 {
-  "name": "doc-file",
+  "name": "filebaser",
   "version": "0.7.5",
   "description": "Database simulator based on MongoDB",
   "license": "MIT",
