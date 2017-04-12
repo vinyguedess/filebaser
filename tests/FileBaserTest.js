@@ -37,4 +37,13 @@ describe('DocFileTest', () => {
         });
     });
 
+    describe('testDroppingDatabase', () => {
+
+        it('Should drop the database', () => {
+            let db = new FileBaser('file-baser.json');
+            assert.isTrue(db.dropDatabase());
+        });
+
+    });
+
 });

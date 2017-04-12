@@ -18,6 +18,11 @@ class DocFile
             DataCompiler.createDatabase(this.dbName);
     };
 
+    dropDatabase()
+    {
+        return DataCompiler.dropDatabase(this.dbName);
+    };
+
     addCollection(collectionName)
     {
         if (!DataCompiler.checkCollectionExists(this.dbName, collectionName))
@@ -43,16 +48,6 @@ class DocFile
         DataCompiler.dropCollection(this.dbName, collectionName);
 
         return true;
-    };
-
-    _getDatabase()
-    {
-        return this.database;
-    };
-
-    _reloadDatabase()
-    {
-        this.database = DataCompiler.getDatabase(this.dbName);
     };
 
 };

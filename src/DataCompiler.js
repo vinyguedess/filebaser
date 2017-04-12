@@ -22,6 +22,13 @@ class DataCompiler
         return JSON.parse(fs.readFileSync(database));
     };
 
+    static dropDatabase(database)
+    {
+        fs.unlinkSync(database);
+
+        return true;
+    };
+
     static checkCollectionExists(database, collection)
     {
         let data = this.getDatabase(database);
