@@ -1,7 +1,15 @@
 {
   "name": "filebaser",
   "description": "Database simulator based on MongoDB",
-  "version": "0.7.13",
+  "keywords": [
+    "database",
+    "mongodb",
+    "mongoose"
+  ],
+  "version": "0.7.14",
+  "license": "MIT",
+  "main": "index.php",
+  "repository": "vinyguedess/filebaser",
   "dependencies": {
     "uniqid": "^4.1.1"
   },
@@ -12,20 +20,12 @@
     "mocha": "^3.2.0",
     "prettier": "^0.22.0"
   },
-  "keywords": [
-    "database",
-    "mongodb",
-    "mongoose"
-  ],
-  "license": "MIT",
   "lint-staged": {
     "*.js": [
       "prettier --write",
       "git add"
     ]
   },
-  "main": "index.php",
-  "repository": "vinyguedess/filebaser",
   "scripts": {
     "precommit": "lint-staged",
     "test": "node ./node_modules/.bin/_mocha --reporter spec --ui tdd ./tests/"
