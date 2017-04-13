@@ -7,7 +7,10 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "husky": "^0.13.3",
+    "lint-staged": "^3.4.0",
+    "mocha": "^3.2.0",
+    "prettier": "^0.22.0"
   },
   "keywords": [
     "database",
@@ -15,16 +18,16 @@
     "mongoose"
   ],
   "license": "MIT",
-  "main": "index.php",
-  "repository": "vinyguedess/filebaser",
-  "scripts": {
-    "precommit": "lint-staged",
-    "test": "node ./node_modules/.bin/_mocha --reporter spec --ui tdd ./tests/"
-  },
   "lint-staged": {
     "*.js": [
       "prettier --write",
       "git add"
     ]
+  },
+  "main": "index.php",
+  "repository": "vinyguedess/filebaser",
+  "scripts": {
+    "precommit": "lint-staged",
+    "test": "node ./node_modules/.bin/_mocha --reporter spec --ui tdd ./tests/"
   }
 }
