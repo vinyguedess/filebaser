@@ -18,6 +18,13 @@
   "main": "index.php",
   "repository": "vinyguedess/filebaser",
   "scripts": {
+    "precommit": "lint-staged",
     "test": "node ./node_modules/.bin/_mocha --reporter spec --ui tdd ./tests/"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
