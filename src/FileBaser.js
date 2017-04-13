@@ -1,53 +1,47 @@
-const DataCompiler = require('./DataCompiler'),
-    Collection = require('./Collection');
+const DataCompiler = require("./DataCompiler"),
+  Collection = require("./Collection");
 
+class DocFile {
+  constructor(dbFileName, options) {
+    this.dbName = dbFileName;
+    this.options = Object.assign(
+      {
+        pool: 5000
+      },
+      options || {}
+    );
 
-class DocFile
-{
+    if (!DataCompiler.checkDatabaseExists(this.dbName))
+      DataCompiler.createDatabase(this.dbName);
+  }
 
-    constructor(dbFileName, options)
-    {
-        this.dbName = dbFileName;
-        this.options = Object.assign({
-            pool: 5000
-        }, options || {});
+  dropDatabase() {
+    return DataCompiler.dropDatabase(this.dbName);
+  }
 
-        if (!DataCompiler.checkDatabaseExists(this.dbName))
-            DataCompiler.createDatabase(this.dbName);
-    };
+  addCollection(collectionName) {
+    if (!DataCompiler.checkCollectionExists(this.dbName, collectionName))
+      DataCompiler.createCollection(this.dbName, collectionName);
 
-    dropDatabase()
-    {
-        return DataCompiler.dropDatabase(this.dbName);
-    };
+    return this.getCollection(collectionName);
+  }
 
-    addCollection(collectionName)
-    {
-        if (!DataCompiler.checkCollectionExists(this.dbName, collectionName))
-            DataCompiler.createCollection(this.dbName, collectionName);
+  getCollection(collectionName) {
+    let collection = DataCompiler.getCollection(this.dbName, collectionName);
 
-        return this.getCollection(collectionName);
-    };
+    if (typeof collection === "undefined")
+      throw new Error("Collection requested does not exist");
 
-    getCollection(collectionName)
-    {
-        let collection = DataCompiler.getCollection(this.dbName, collectionName);
+    collection.database = this.dbName;
 
-        if (typeof collection === 'undefined')
-            throw new Error('Collection requested does not exist');
+    return new Collection(collection, this);
+  }
 
-        collection.database = this.dbName;
+  dropCollection(collectionName) {
+    DataCompiler.dropCollection(this.dbName, collectionName);
 
-        return new Collection(collection, this);
-    };
-
-    dropCollection(collectionName)
-    {
-        DataCompiler.dropCollection(this.dbName, collectionName);
-
-        return true;
-    };
-
-};
+    return true;
+  }
+}
 
 module.exports = DocFile;
