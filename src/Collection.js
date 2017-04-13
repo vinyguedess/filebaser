@@ -3,9 +3,9 @@ const uniqid = require('uniqid');
 const DataCompiler = require('./DataCompiler');
 
 class ArrayFilter {
-        constructor(data) {
-          this.data = data;
-        };
+      constructor(data) {
+        this.data = data;
+      };
 
   apply(filter) {
     this.filters = filter;
