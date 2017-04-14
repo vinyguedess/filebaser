@@ -37,6 +37,20 @@ class DocFile {
     return new Collection(collection, this);
   }
 
+  getCollections() {
+    let database = DataCompiler.getDatabase(this.dbName);
+
+    let collections = [];
+    for (let key in database.collections) {
+      collections.push({
+        name: database.collections[key].name,
+        size: database.collections[key].data.length
+      });
+    }
+
+    return collections;
+  }
+
   dropCollection(collectionName) {
     DataCompiler.dropCollection(this.dbName, collectionName);
 

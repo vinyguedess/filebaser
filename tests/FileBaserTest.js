@@ -21,6 +21,11 @@ describe("DocFileTest", () => {
     let db = new FileBaser("file-baser.json"),
       collection = db.addCollection("datalist");
 
+    it("Should list all database collections", () => {
+      let collections = db.getCollections();
+      assert.isTrue(Array.isArray(collections));
+    });
+
     it("Should confirm collection is instance of Collection", () => {
       assert.instanceOf(collection, Collection);
     });
