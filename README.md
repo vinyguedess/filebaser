@@ -1,5 +1,7 @@
 # Filebaser
 ![TravisCI](https://api.travis-ci.org/vinyguedess/filebaser.svg?branch=master)
+![NPM Downloads](https://img.shields.io/npm/v/filebaser.svg?maxAge=2592000)
+![Licence](https://img.shields.io/npm/l/filebaser.svg)<br />
 Filebaser is an engine for managing database documents like MongoDB.
 
 ### Installation
