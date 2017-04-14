@@ -1,7 +1,7 @@
 const assert = require("chai").assert;
 
 const FileBaser = require("./../src/FileBaser"),
-  Collection = require("./../src/Collection");
+  Collection = require("./../src/Collection/Collection");
 
 describe("CollectionTest", () => {
   let db = new FileBaser("file-baser.json");

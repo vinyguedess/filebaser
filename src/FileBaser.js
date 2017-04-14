@@ -1,5 +1,5 @@
 const DataCompiler = require("./DataCompiler"),
-  Collection = require("./Collection");
+  Collection = require("./Collection/Collection");
 
 class DocFile {
   constructor(dbFileName, options) {

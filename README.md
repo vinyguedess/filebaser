@@ -1,4 +1,5 @@
 # Filebaser
+![TravisCI](https://api.travis-ci.org/vinyguedess/filebaser.svg?branch=master)
 Filebaser is an engine for managing database documents like MongoDB.
 
 ### Installation
