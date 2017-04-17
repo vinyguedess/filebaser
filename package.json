@@ -6,7 +6,7 @@
     "mongodb",
     "mongoose"
   ],
-  "version": "0.7.15",
+  "version": "0.8.3",
   "license": "MIT",
   "main": "index.php",
   "repository": "vinyguedess/filebaser",
@@ -28,6 +28,6 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "test": "node ./node_modules/.bin/_mocha --reporter spec --ui tdd ./tests/"
+    "test": "istanbul cover node_modules/.bin/_mocha tests/ && codecov"
   }
 }

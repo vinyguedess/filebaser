@@ -1,6 +1,7 @@
 const uniqid = require("uniqid");
 
-const DataCompiler = require("./../DataCompiler"), Filter = require("./Filter");
+const DataCompiler = require("./../DataCompiler"),
+  FindFilter = require("./Filters/FindAdapter");
 
 class Collection {
   constructor(collectionData) {
@@ -27,58 +28,31 @@ class Collection {
     return true;
   }
 
-  count(filters) {
-    filters = Object.assign(
-      {
-        where: {},
-        limit: null,
-        offset: null
-      },
-      filters || {}
-    );
-
-    let arrayfilter = new Filter(this.data);
-    arrayfilter.apply(filters);
-
-    return arrayfilter.get().length;
-  }
-
-  findAll(filters) {
-    filters = Object.assign(
-      {
-        where: {},
-        limit: null,
-        offset: null
-      },
-      filters || {}
-    );
-
-    let arrayfilter = new Filter(this.data);
-    arrayfilter.apply(filters);
-
-    return arrayfilter.get();
-  }
-
   find(filters) {
-    filters = Object.assign(
-      {
-        where: {},
-        limit: 1,
-        offset: 0
-      },
-      filters || {}
-    );
+    let findFilter = new FindFilter(this.data);
+    if (typeof filters !== "undefined") {
+      for (let key in filters.where || {}) {
+        let value = filters.where[key];
+        if (typeof value === "object") {
+          for (let valueKey in value)
+            findFilter.where(key, valueKey, value[valueKey]);
 
-    let element = this.findAll(filters);
-    if (element.length <= 0) return null;
+          continue;
+        }
 
-    return element[0];
+        findFilter.where(key, "=", value);
+      }
+
+      return findFilter.fetchAll();
+    }
+
+    return findFilter;
   }
 
   delete(filters, flush) {
     let _this = this;
 
-    this.findAll(filters).map(function(element) {
+    this.find(filters).map(function(element) {
       let index = _this.data.indexOf(element);
       _this.data.splice(index, 1);
     });

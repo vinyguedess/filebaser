@@ -2,6 +2,12 @@ language: node_js
 node_js:
   - "6"
 
+install:
+  - npm install -g codecov
+script:
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov
+
 deploy:
   provider: npm
   email: "viniciusgued@gmail.com"

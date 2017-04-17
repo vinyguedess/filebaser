@@ -18,7 +18,7 @@ describe("CollectionTest", () => {
       });
 
       assert.isTrue(inserted);
-      assert.isAtLeast(collection.count(), 1);
+      assert.isAtLeast(collection.find().count(), 1);
     });
   });
 
@@ -29,16 +29,13 @@ describe("CollectionTest", () => {
     collection.insert({ name: "Yahoo", version: "7.13.1", code: 1 });
 
     it("Should find any element", () => {
-      let element = collection.find();
+      let element = collection.find().fetch();
 
       assert.isTrue(typeof element === "object");
     });
 
     it("Should find many elements", () => {
-      let elements = collection.findAll({
-        offset: 2,
-        limit: 1
-      });
+      let elements = collection.find().limit(1).offset(2).fetchAll();
 
       assert.equal(1, elements.length);
       assert.equal("Yahoo", elements[0].name);
@@ -47,54 +44,30 @@ describe("CollectionTest", () => {
     it("Should find and filter data", () => {
       assert.equal(
         1,
-        collection.findAll({
-          where: {
-            version: "7.13.1"
-          }
-        }).length
+        collection.find().where("version", "7.13.1").fetchAll().length
       );
 
       assert.equal(
         "Google",
-        collection.find({
-          where: {
-            code: { neq: 10 }
-          }
-        }).name
+        collection.find().where("code", "neq", 10).fetch().name
       );
 
       assert.equal(
         2,
-        collection.findAll({
+        collection.find({
           where: {
             name: { like: "oo" }
           }
         }).length
       );
 
-      assert.isNull(
-        collection.find({
-          where: {
-            code: { gte: 10 }
-          }
-        })
-      );
+      assert.isNull(collection.find().where("code", ">=", 10).fetch());
 
-      assert.isNull(
-        collection.find({
-          where: {
-            code: { gt: 10 }
-          }
-        })
-      );
+      assert.isNull(collection.find().where("code", "gt", 10).fetch());
 
       assert.equal(
         1,
-        collection.findAll({
-          where: {
-            code: { lt: 2 }
-          }
-        }).length
+        collection.find().where("code", "lt", 2).fetchAll().length
       );
     });
   });
@@ -106,27 +79,13 @@ describe("CollectionTest", () => {
     collection.insert({ name: "Yahoo", version: "7.13.1", code: 1 });
 
     it("Should count data without problems", () => {
-      assert.equal(3, collection.count());
+      assert.equal(3, collection.find().count());
     });
 
     it("Should count data based on filters", () => {
-      assert.equal(
-        1,
-        collection.count({
-          where: {
-            name: "Google"
-          }
-        })
-      );
+      assert.equal(1, collection.find().where("name", "Google").count());
 
-      assert.equal(
-        1,
-        collection.count({
-          where: {
-            code: { gte: 7 }
-          }
-        })
-      );
+      assert.equal(1, collection.find().where("code", "gte", 7).count());
     });
   });
 
@@ -138,11 +97,7 @@ describe("CollectionTest", () => {
     collection.insert({ name: "Yahoo", version: "7.13.1", code: 1 });
 
     it("Should find an specific element and update its information", () => {
-      let element = collection.find({
-        where: {
-          code: 10
-        }
-      });
+      let element = collection.find().where("code", 10).fetch();
 
       element.name = "Safari";
       collection.update(element);
@@ -176,7 +131,7 @@ describe("CollectionTest", () => {
         )
       );
 
-      assert.equal(1, collection.count());
+      assert.equal(1, collection.find().count());
     });
   });
 
