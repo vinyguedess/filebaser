@@ -17,6 +17,14 @@ describe("DocFileTest", () => {
     });
   });
 
+  describe("testGettingDatabaseInfo", () => {
+    let db = new FileBaser("file-baser.json");
+
+    it("Should show database information", () => {
+      assert.isTrue(typeof db.getInfo() === "object");
+    });
+  });
+
   describe("testGettingCollection", () => {
     let db = new FileBaser("file-baser.json"),
       collection = db.addCollection("datalist");

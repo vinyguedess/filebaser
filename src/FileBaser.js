@@ -15,6 +15,16 @@ class DocFile {
       DataCompiler.createDatabase(this.dbName);
   }
 
+  getInfo() {
+    let stats = DataCompiler.getDatabaseInfo(this.dbName);
+
+    return {
+      getSize: () => stats.size,
+      createdAt: () => new Date(stats.ctime),
+      modifiedAt: () => new Date(stats.mtime)
+    };
+  }
+
   dropDatabase() {
     return DataCompiler.dropDatabase(this.dbName);
   }

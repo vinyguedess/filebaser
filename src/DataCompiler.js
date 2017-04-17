@@ -19,6 +19,10 @@ class DataCompiler {
     return JSON.parse(fs.readFileSync(database));
   }
 
+  static getDatabaseInfo(database) {
+    return fs.statSync(database);
+  }
+
   static dropDatabase(database) {
     fs.unlinkSync(database);
 

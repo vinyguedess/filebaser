@@ -33,6 +33,18 @@ You can apply any filter like in MongoDB
     });
 ```
 
+There's an alternative way for filtering data, shown in the example below:
+```javascript
+    let collection = fb.getCollection('users');
+
+    let users = collection
+        .find()
+        .where('age', 'gte', 18)
+        .where('active', true)
+        .limit(10)
+        .fetchAll();
+```
+
 ### Saving
 For inserting and updating data we use a pattern similar to an ORM
 ```javascript
@@ -66,3 +78,5 @@ the following command.
 ```bash
     npm run test
 ```
+
+Project also relies on codecov and istanbul for measuring codecoverage.
