@@ -8,7 +8,7 @@
   ],
   "version": "0.8.4",
   "license": "MIT",
-  "main": "index.php",
+  "main": "index.js",
   "repository": "vinyguedess/filebaser",
   "dependencies": {
     "uniqid": "^4.1.1"
@@ -28,6 +28,6 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "test": "istanbul cover node_modules/.bin/_mocha tests/ && codecov"
+    "test": "istanbul cover node_modules/.bin/_mocha && codecov"
   }
 }

@@ -1,9 +1,15 @@
 const assert = require("chai").assert;
 
-const FileBaser = require("./../src/FileBaser"),
-  Collection = require("./../src/Collection/Collection");
+const FileBaser = require("../../src/FileBaser"),
+  Collection = require("../../src/Collection/Collection");
 
-describe("DocFileTest", () => {
+describe("FileBaserTest", () => {
+  describe("testGettingAnInstanceOfFileBaser", () => {
+    it("Should make an instance of FileBaser from static call", () => {
+      assert.instanceOf(FileBaser.getInstance(), FileBaser);
+    });
+  });
+
   describe("testAddingCollection", () => {
     let db = new FileBaser("file-baser.json");
     let collection = db.addCollection("datalist");
@@ -22,6 +28,9 @@ describe("DocFileTest", () => {
 
     it("Should show database information", () => {
       assert.isTrue(typeof db.getInfo() === "object");
+      assert.isNumber(db.getInfo().getSize());
+      assert.instanceOf(db.getInfo().createdAt(), Date);
+      assert.instanceOf(db.getInfo().modifiedAt(), Date);
     });
   });
 

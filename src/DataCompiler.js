@@ -19,6 +19,16 @@ class DataCompiler {
     return JSON.parse(fs.readFileSync(database));
   }
 
+  static getDatabaseAsync(database) {
+    return new Promise((resolve, reject) => {
+      fs.readFile(database, "utf-8", (err, data) => {
+        if (err) reject(err);
+
+        return resolve(JSON.parse(data));
+      });
+    });
+  }
+
   static getDatabaseInfo(database) {
     return fs.statSync(database);
   }
@@ -73,6 +83,15 @@ class DataCompiler {
     let data = this.getDatabase(database);
 
     return data.collections[collection];
+  }
+
+  static getCollectionAsync(database, collection) {
+    return this.getDatabaseAsync(database).then(data => {
+      if (typeof data.collections[collection] !== "undefined")
+        return data.collections[collection];
+
+      throw new Error("Collection " + collection + " was not found");
+    });
   }
 }
 

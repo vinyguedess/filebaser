@@ -1,18 +1,18 @@
 const DataCompiler = require("./DataCompiler"),
   Collection = require("./Collection/Collection");
 
-class DocFile {
-  constructor(dbFileName, options) {
-    this.dbName = dbFileName;
-    this.options = Object.assign(
-      {
-        pool: 5000
-      },
-      options || {}
-    );
+var dbName = null;
+
+class FileBaser {
+  constructor(dbFileName) {
+    this.dbName = (dbName = dbFileName);
 
     if (!DataCompiler.checkDatabaseExists(this.dbName))
       DataCompiler.createDatabase(this.dbName);
+  }
+
+  static getInstance() {
+    return new FileBaser(dbName);
   }
 
   getInfo() {
@@ -47,6 +47,18 @@ class DocFile {
     return new Collection(collection, this);
   }
 
+  getCollectionAsync(collectionName) {
+    let _this = this;
+
+    return DataCompiler.getCollectionAsync(
+      this.dbName,
+      collectionName
+    ).then(collection => {
+      collection.database = _this.dbName;
+      return new Collection(collection, _this);
+    });
+  }
+
   getCollections() {
     let database = DataCompiler.getDatabase(this.dbName);
 
@@ -68,4 +80,4 @@ class DocFile {
   }
 }
 
-module.exports = DocFile;
+module.exports = FileBaser;

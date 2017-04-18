@@ -17,7 +17,7 @@ How to declare:
 ```javascript
     const FileBaser = require('filebase');
 
-    fb = new FileBaser('databasefile.db');
+    let fb = new FileBaser('databasefile.db');
 ```
 
 ### Querying
