@@ -75,6 +75,8 @@ For inserting and updating data we use a pattern similar to an ORM
 ```
 After that this object received an unique ID for identification and was saved to memory.
 
+In case object already has an ID (is not a new object), than the data is saved and ID is not regenerated.
+
 ##### Why saved on memory ?
 Because we are talking about writing data into a file. Even NodeJS works asynchronously
 it should sometime overload the app.
