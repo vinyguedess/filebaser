@@ -46,6 +46,18 @@ There's an alternative way for filtering data, shown in the example below:
         .fetchAll();
 ```
 
+Or you can even use your own custom filter:
+```javascript
+
+    let users = collection()
+        .find()
+        .where((element) => {
+            return element.active || element.name.indexOf('base');
+        })
+        .limit(5)
+        .fetchAll();
+```
+
 ### Saving
 For inserting and updating data we use a pattern similar to an ORM
 ```javascript
@@ -61,16 +73,32 @@ For inserting and updating data we use a pattern similar to an ORM
 
     collection.save(obj);
 ```
-After that this object received and unique ID for identification and was saved to memory.
+After that this object received an unique ID for identification and was saved to memory.
 
 ##### Why saved on memory ?
 Because we are talking about writing data into a file. Even NodeJS works asynchronously
 it should sometime overload the app.
-So to solve this problem we created a function called "flush()". It's reposible for
+So, to solve this problem we created a function called "flush()". It's reponsible for
 sending saved data directly to the database file.
 E.g.: continuing from last example about inserting data.
 ```javascript
     collection.flush();
+```
+
+### What about async ?
+Recently implemented, there're some calls that can be made asynchronously.
+```javascript
+    let fb = new FileBaser('databasefile.db');
+
+    let collection = fb
+        .getCollectionAsync('users')
+        .then((collection) => {
+           let users = collection
+                .find()
+                .where((element) => element.active)
+                .limit(10)
+                .fetchAll();
+        });
 ```
 
 ### Testing
