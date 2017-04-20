@@ -33,8 +33,6 @@ class FindAdapter {
 
         if (comparision === "lte" || comparision === "<=")
           return element[key] <= value;
-
-        return true;
       });
     }
 

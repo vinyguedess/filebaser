@@ -44,12 +44,31 @@ describe("CollectionTest", () => {
     it("Should find and filter data", () => {
       assert.equal(
         1,
+        collection
+          .find()
+          .where(element => {
+            return element.name === "Yahoo" && element.version === "7.13.1";
+          })
+          .count()
+      );
+
+      assert.equal(2, collection.find().where("code", "lte", 2).count());
+
+      assert.equal(
+        1,
         collection.find().where("version", "7.13.1").fetchAll().length
       );
 
       assert.equal(
         "Google",
         collection.find().where("code", "neq", 10).fetch().name
+      );
+
+      assert.equal(
+        "Google",
+        collection.find({
+          name: "Google"
+        })[0].name
       );
 
       assert.equal(
