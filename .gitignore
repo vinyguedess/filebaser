@@ -6,4 +6,5 @@ npm-debug.*
 
 # OS and IDE folders and files
 .idea/
+.vscode/
 nbproject/

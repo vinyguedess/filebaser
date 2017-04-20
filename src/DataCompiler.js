@@ -55,6 +55,25 @@ class DataCompiler {
     return fs.writeFileSync(database, JSON.stringify(data));
   }
 
+  static createCollectionAsync(database, collection) {
+    let _this = this;
+
+    return this.getDatabaseAsync(database).then(data => {
+      data.collections[collection] = {
+        name: collection,
+        data: []
+      };
+
+      return new Promise((resolve, reject) => {
+        fs.writeFile(database, JSON.stringify(data), err => {
+          if (err) reject(err);
+
+          resolve(true);
+        });
+      });
+    });
+  }
+
   static saveCollectionData(database, collection, collectionData, overWrite) {
     let data = this.getDatabase(database);
 

@@ -4,7 +4,7 @@ const FileBaser = require("./../../src/FileBaser"),
   Collection = require("./../../src/Collection/Collection");
 
 describe("AsyncCollectionTest", () => {
-  let db = new FileBaser("file-baser.json");
+  let db = new FileBaser("file-baser-async.json");
 
   before(() => {
     let collection = db.addCollection("datalist");
@@ -15,7 +15,18 @@ describe("AsyncCollectionTest", () => {
     collection.flush();
   });
 
-  describe("Doing something async way", () => {
+  describe("Creating a collection the async way", () => {
+    it("Should create a collection that doen't exist already", done => {
+      db.addCollectionAsync("listdata").then(collection => {
+        assert.instanceOf(collection, Collection);
+        assert.equal(0, collection.find().limit(10).fetchAll());
+
+        done();
+      });
+    });
+  });
+
+  describe("Finding data the async way", () => {
     it("Should find data asynchronously", done => {
       db.getCollectionAsync("datalist").then(collection => {
         assert.instanceOf(collection, Collection);
@@ -25,5 +36,9 @@ describe("AsyncCollectionTest", () => {
         done();
       });
     });
+  });
+
+  after(() => {
+    db.dropDatabase();
   });
 });

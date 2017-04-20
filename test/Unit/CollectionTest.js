@@ -116,6 +116,20 @@ describe("CollectionTest", () => {
     });
   });
 
+  describe("testSavingData", () => {
+    it("Should save selected data into collection", () => {
+      let collection = db.getCollection("datalist");
+
+      assert.isTrue(
+        collection.save({
+          name: "Netscape",
+          version: "2.7",
+          code: 1992
+        })
+      );
+    });
+  });
+
   describe("testDeletingData", () => {
     it("Should delete data based on filters", () => {
       let collection = db.getCollection("datalist");

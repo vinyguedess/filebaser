@@ -36,6 +36,22 @@ class FileBaser {
     return this.getCollection(collectionName);
   }
 
+  addCollectionAsync(collectionName) {
+    let _this = this;
+
+    if (!DataCompiler.checkCollectionExists(this.dbName, collectionName))
+      return DataCompiler.createCollectionAsync(
+        this.dbName,
+        collectionName
+      ).then(data => {
+        if (data) return _this.getCollectionAsync(collectionName);
+
+        return data;
+      });
+
+    return this.getCollectionAsync(collectionName);
+  }
+
   getCollection(collectionName) {
     let collection = DataCompiler.getCollection(this.dbName, collectionName);
 
