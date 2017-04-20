@@ -89,6 +89,19 @@ class FileBaser {
     return collections;
   }
 
+  getCollectionsAsync() {
+    return DataCompiler.getDatabaseAsync(this.dbName).then(database => {
+      let collections = [];
+      for (let key in database.collections)
+        collections.push({
+          name: database.collections[key].name,
+          size: database.collections[key].data.length
+        });
+
+      return collections;
+    });
+  }
+
   dropCollection(collectionName) {
     DataCompiler.dropCollection(this.dbName, collectionName);
 

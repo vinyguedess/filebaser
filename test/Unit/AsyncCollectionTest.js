@@ -37,8 +37,4 @@ describe("AsyncCollectionTest", () => {
       });
     });
   });
-
-  after(() => {
-    db.dropDatabase();
-  });
 });
