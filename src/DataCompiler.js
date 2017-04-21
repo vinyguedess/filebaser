@@ -39,6 +39,16 @@ class DataCompiler {
     return true;
   }
 
+  static dropDatabaseAsync(database) {
+    return new Promise((resolve, reject) => {
+      fs.unlink(database, err => {
+        if (err) resolve(false);
+
+        resolve(true);
+      });
+    });
+  }
+
   static checkCollectionExists(database, collection) {
     let data = this.getDatabase(database);
 
@@ -96,6 +106,20 @@ class DataCompiler {
     fs.writeFileSync(database, JSON.stringify(data));
 
     return true;
+  }
+
+  static dropCollectionAsync(database, collection) {
+    return this.getDatabaseAsync(database).then(data => {
+      delete data.collections[collection];
+
+      return new Promise((resolve, reject) => {
+        fs.writeFile(database, JSON.stringify(data), err => {
+          if (err) resolve(false);
+
+          resolve(true);
+        });
+      });
+    });
   }
 
   static getCollection(database, collection) {

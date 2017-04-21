@@ -29,6 +29,10 @@ class FileBaser {
     return DataCompiler.dropDatabase(this.dbName);
   }
 
+  dropDatabaseAsync() {
+    return DataCompiler.dropDatabaseAsync(this.dbName);
+  }
+
   addCollection(collectionName) {
     if (!DataCompiler.checkCollectionExists(this.dbName, collectionName))
       DataCompiler.createCollection(this.dbName, collectionName);
@@ -106,6 +110,10 @@ class FileBaser {
     DataCompiler.dropCollection(this.dbName, collectionName);
 
     return true;
+  }
+
+  dropCollectionAsync(collectionName) {
+    return DataCompiler.dropCollectionAsync(this.dbName, collectionName);
   }
 }
 
