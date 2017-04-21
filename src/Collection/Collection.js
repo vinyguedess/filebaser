@@ -69,6 +69,14 @@ class Collection {
   flush() {
     return DataCompiler.saveCollectionData(this.dbName, this.name, this.data);
   }
+
+  flushAsync() {
+    return DataCompiler.saveCollectionDataAsync(
+      this.dbName,
+      this.name,
+      this.data
+    );
+  }
 }
 
 module.exports = Collection;

@@ -26,12 +26,26 @@ describe("AsyncCollectionTest", () => {
     });
   });
 
+  describe("Flushing data async way", () => {
+    it("Should flush data and save the database file(s)", done => {
+      db.getCollectionAsync("datalist").then(collection => {
+        collection.insert({ name: "Safari", code: 3.2 });
+
+        collection.flushAsync().then(response => {
+          assert.isTrue(response);
+
+          done();
+        });
+      });
+    });
+  });
+
   describe("Finding data the async way", () => {
     it("Should find data asynchronously", done => {
       db.getCollectionAsync("datalist").then(collection => {
         assert.instanceOf(collection, Collection);
 
-        assert.equal(4, collection.find().count());
+        assert.equal(5, collection.find().count());
 
         done();
       });

@@ -99,6 +99,30 @@ class DataCompiler {
     return true;
   }
 
+  static saveCollectionDataAsync(
+    database,
+    collection,
+    collectionData,
+    overWrite
+  ) {
+    return this.getDatabaseAsync(database).then(data => {
+      if (overWrite || true) data.collections[collection].data = collectionData;
+      else data.collections[collection].data = data.collections[collection].data
+          .concat(collectionData)
+          .filter((element, index, allElements) => {
+            return allElements.indexOf(element) < 0;
+          });
+
+      return new Promise((resolve, reject) => {
+        fs.writeFile(database, JSON.stringify(data), err => {
+          if (err) resolve(false);
+
+          resolve(true);
+        });
+      });
+    });
+  }
+
   static dropCollection(database, collection) {
     let data = this.getDatabase(database);
     delete data.collections[collection];
