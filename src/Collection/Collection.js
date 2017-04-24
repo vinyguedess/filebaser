@@ -66,15 +66,21 @@ class Collection {
     return this.name;
   }
 
-  flush() {
-    return DataCompiler.saveCollectionData(this.dbName, this.name, this.data);
+  flush(overWrite) {
+    return DataCompiler.saveCollectionData(
+      this.dbName,
+      this.name,
+      this.data,
+      overWrite || true
+    );
   }
 
-  flushAsync() {
+  flushAsync(overWrite) {
     return DataCompiler.saveCollectionDataAsync(
       this.dbName,
       this.name,
-      this.data
+      this.data,
+      overWrite || true
     );
   }
 }

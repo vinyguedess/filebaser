@@ -17,9 +17,18 @@ describe("AsyncCollectionTest", () => {
 
   describe("Creating a collection the async way", () => {
     it("Should create a collection that doen't exist already", done => {
-      db.addCollectionAsync("listdata").then(collection => {
+      db.addCollectionAsync("nonexistentcollection").then(collection => {
         assert.instanceOf(collection, Collection);
         assert.equal(0, collection.find().limit(10).fetchAll());
+
+        done();
+      });
+    });
+
+    it("Should try to create a collection that already exists", done => {
+      db.addCollectionAsync("nonexistentcollection").then(collection => {
+        assert.instanceOf(collection, Collection);
+        assert.equal(0, collection.find().limit(20).fetchAll());
 
         done();
       });
@@ -38,6 +47,18 @@ describe("AsyncCollectionTest", () => {
         });
       });
     });
+
+    it("Should flush data without overwrite it", done => {
+      db.getCollectionAsync("datalist").then(collection => {
+        collection.insert({ name: "Opera", code: 4.0 });
+
+        collection.flushAsync(false).then(response => {
+          assert.isTrue(response);
+
+          done();
+        });
+      });
+    });
   });
 
   describe("Finding data the async way", () => {
@@ -45,7 +66,7 @@ describe("AsyncCollectionTest", () => {
       db.getCollectionAsync("datalist").then(collection => {
         assert.instanceOf(collection, Collection);
 
-        assert.equal(5, collection.find().count());
+        assert.equal(6, collection.find().count());
 
         done();
       });
