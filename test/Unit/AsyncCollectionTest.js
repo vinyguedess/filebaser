@@ -15,6 +15,26 @@ describe("AsyncCollectionTest", () => {
     collection.flush();
   });
 
+  describe("Getting a collection the async way", () => {
+    it("Should get a collection without major problems", done => {
+      db.getCollectionAsync("datalist").then(collection => {
+        assert.instanceOf(collection, Collection);
+
+        done();
+      });
+    });
+
+    it("Should throw an exception cause collection don't exists yet", done => {
+      db.getCollectionAsync("nonexistentcollection").catch(err => {
+        assert.throw(() => {
+          err();
+        });
+
+        done();
+      });
+    });
+  });
+
   describe("Creating a collection the async way", () => {
     it("Should create a collection that doen't exist already", done => {
       db.addCollectionAsync("nonexistentcollection").then(collection => {
