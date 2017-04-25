@@ -39,6 +39,10 @@ describe("FileBaserTest", () => {
       collection = db.addCollection("datalist");
 
     it("Should list all database collections", () => {
+      db.addCollection("col_one");
+      db.addCollection("col_three");
+      db.addCollection("col_two");
+
       let collections = db.getCollections();
       assert.isTrue(Array.isArray(collections));
     });

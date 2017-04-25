@@ -133,6 +133,10 @@ describe("CollectionTest", () => {
     it("Should flush data and save back into database", () => {
       assert.isTrue(collection.flush());
     });
+
+    it("Should flush data and save into database without overwrite it all", () => {
+      assert.isTrue(collection.flush(false));
+    });
   });
 
   describe("testSavingData", () => {

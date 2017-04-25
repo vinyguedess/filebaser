@@ -105,6 +105,7 @@ class DataCompiler {
     collectionData,
     overWrite
   ) {
+    console.log(overWrite);
     return this.getDatabaseAsync(database).then(data => {
       if (overWrite || true) data.collections[collection].data = collectionData;
       else data.collections[collection].data = data.collections[collection].data
