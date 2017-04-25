@@ -84,34 +84,18 @@ class DataCompiler {
     });
   }
 
-  static saveCollectionData(database, collection, collectionData, overWrite) {
+  static saveCollectionData(database, collection, collectionData) {
     let data = this.getDatabase(database);
-
-    if (overWrite || true) data.collections[collection].data = collectionData;
-    else data.collections[collection].data = data.collections[collection].data
-        .concat(collectionData)
-        .filter((element, index, allElements) => {
-          return allElements.indexOf(element) < 0;
-        });
+    data.collections[collection].data = collectionData;
 
     fs.writeFileSync(database, JSON.stringify(data));
 
     return true;
   }
 
-  static saveCollectionDataAsync(
-    database,
-    collection,
-    collectionData,
-    overWrite
-  ) {
+  static saveCollectionDataAsync(database, collection, collectionData) {
     return this.getDatabaseAsync(database).then(data => {
-      if (overWrite || true) data.collections[collection].data = collectionData;
-      else data.collections[collection].data = data.collections[collection].data
-          .concat(collectionData)
-          .filter((element, index, allElements) => {
-            return allElements.indexOf(element) < 0;
-          });
+      data.collections[collection].data = collectionData;
 
       return new Promise((resolve, reject) => {
         fs.writeFile(database, JSON.stringify(data), err => {

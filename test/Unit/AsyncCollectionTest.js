@@ -67,18 +67,6 @@ describe("AsyncCollectionTest", () => {
         });
       });
     });
-
-    it("Should flush data without overwrite it", done => {
-      db.getCollectionAsync("datalist").then(collection => {
-        collection.insert({ name: "Opera", code: 4.0 });
-
-        collection.flushAsync(false).then(response => {
-          assert.isTrue(response);
-
-          done();
-        });
-      });
-    });
   });
 
   describe("Finding data the async way", () => {
@@ -86,7 +74,7 @@ describe("AsyncCollectionTest", () => {
       db.getCollectionAsync("datalist").then(collection => {
         assert.instanceOf(collection, Collection);
 
-        assert.equal(6, collection.find().count());
+        assert.equal(5, collection.find().count());
 
         done();
       });

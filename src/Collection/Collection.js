@@ -66,25 +66,15 @@ class Collection {
     return this.name;
   }
 
-  flush(overWrite) {
-    if (typeof overWrite === "undefined") overWrite = true;
-
-    return DataCompiler.saveCollectionData(
-      this.dbName,
-      this.name,
-      this.data,
-      overWrite
-    );
+  flush() {
+    return DataCompiler.saveCollectionData(this.dbName, this.name, this.data);
   }
 
-  flushAsync(overWrite) {
-    if (typeof overWrite === "undefined") overWrite = true;
-
+  flushAsync() {
     return DataCompiler.saveCollectionDataAsync(
       this.dbName,
       this.name,
-      this.data,
-      overWrite
+      this.data
     );
   }
 }
