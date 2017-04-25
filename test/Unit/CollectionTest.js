@@ -67,7 +67,9 @@ describe("CollectionTest", () => {
       assert.equal(
         "Google",
         collection.find({
-          name: "Google"
+          where: {
+            name: "Google"
+          }
         })[0].name
       );
 
@@ -143,13 +145,16 @@ describe("CollectionTest", () => {
     it("Should save selected data into collection", () => {
       let collection = db.getCollection("datalist");
 
-      assert.isTrue(
-        collection.save({
-          name: "Netscape",
-          version: "2.7",
-          code: 1992
-        })
-      );
+      let obj = {
+        name: "Netscape",
+        version: "2.7",
+        code: 1992
+      };
+
+      assert.isTrue(collection.save(obj));
+
+      obj.name += " NW";
+      assert.isTrue(collection.save(obj));
     });
   });
 

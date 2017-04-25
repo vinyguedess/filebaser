@@ -14,7 +14,7 @@ class FindAdapter {
         value = arguments.length > 2 ? arguments[2] : arguments[1];
 
       this.data = this.data.filter(element => {
-        if (comparision === "eq" || comparision === "==")
+        if (comparision === "eq" || comparision === "=")
           return element[key] === value;
 
         if (comparision === "like") return element[key].indexOf(value) >= 0;
