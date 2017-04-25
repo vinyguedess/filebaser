@@ -6,7 +6,7 @@
     "mongodb",
     "mongoose"
   ],
-  "version": "0.9.15",
+  "version": "0.9.16",
   "license": "MIT",
   "main": "index.js",
   "repository": "vinyguedess/filebaser",
