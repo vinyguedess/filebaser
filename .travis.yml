@@ -10,6 +10,6 @@ install:
 deploy:
   provider: npm
   email: "viniciusgued@gmail.com"
-  api_key: "11985a04-8b27-461f-a11f-cfd9031ed992"
+  api_key: "e1ea496f-22c1-4d6b-aff4-9874164bcf7f"
   on:
     branch: master
