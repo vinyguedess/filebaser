@@ -89,9 +89,7 @@ class FindAdapter {
 
       key = key.split(".");
       for (let k of key) {
-        if (typeof value[k] === "undefined") {
-          return null;
-        }
+        if (typeof value[k] === "undefined") return null;
 
         value = value[k];
       }

@@ -65,6 +65,8 @@ describe("AdvancedQueryingTest", () => {
           collection.find().where("address.city", "eq", "São Paulo").count()
         );
 
+        assert.equal(0, collection.find().where("address.stat", true).count());
+
         done();
       });
     });
