@@ -1,12 +1,12 @@
 {
   "name": "filebaser",
-  "description": "Database simulator based on MongoDB",
+  "description": "Database engine based on MongoDB but using system files",
   "keywords": [
     "database",
     "mongodb",
     "mongoose"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "index.js",
   "repository": "vinyguedess/filebaser",
