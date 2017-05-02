@@ -9,6 +9,7 @@ Filebaser is an engine for managing database documents like MongoDB.
 ### Installation
 All dependencies of Filebaser are easily installed by npm.
 ```bash
+    npm install -g istanbul codecov
     npm install
 ```
 
@@ -48,7 +49,6 @@ There's an alternative way for filtering data, shown in the example below:
 
 Or you can even use your own custom filter:
 ```javascript
-
     let users = collection()
         .find()
         .where((element) => {

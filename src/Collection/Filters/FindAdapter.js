@@ -13,26 +13,28 @@ class FindAdapter {
         comparision = arguments.length === 2 ? "eq" : arguments[1],
         value = arguments.length > 2 ? arguments[2] : arguments[1];
 
+      let _this = this;
       this.data = this.data.filter(element => {
         if (comparision === "eq" || comparision === "=")
-          return element[key] === value;
+          return _this._getElementValue(element, key) === value;
 
-        if (comparision === "like") return element[key].indexOf(value) >= 0;
+        if (comparision === "like")
+          return _this._getElementValue(element, key).indexOf(value) >= 0;
 
         if (comparision === "neq" || comparision === "!=")
-          return element[key] !== value;
+          return _this._getElementValue(element, key) !== value;
 
         if (comparision === "gt" || comparision === ">")
-          return element[key] > value;
+          return _this._getElementValue(element, key) > value;
 
         if (comparision === "gte" || comparision === ">=")
-          return element[key] >= value;
+          return _this._getElementValue(element, key) >= value;
 
         if (comparision === "lt" || comparision === "<")
-          return element[key] < value;
+          return _this._getElementValue(element, key) < value;
 
         if (comparision === "lte" || comparision === "<=")
-          return element[key] <= value;
+          return _this._getElementValue(element, key) <= value;
       });
     }
 
@@ -79,6 +81,25 @@ class FindAdapter {
 
   count() {
     return this.data.length;
+  }
+
+  _getElementValue(element, key) {
+    if (key.indexOf(".") >= 0) {
+      let value = element;
+
+      key = key.split(".");
+      for (let k of key) {
+        if (typeof value[k] === "undefined") {
+          return null;
+        }
+
+        value = value[k];
+      }
+
+      return value;
+    }
+
+    return element[key];
   }
 }
 
