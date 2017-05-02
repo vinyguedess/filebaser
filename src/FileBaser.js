@@ -48,9 +48,7 @@ class FileBaser {
         this.dbName,
         collectionName
       ).then(data => {
-        if (data) return _this.getCollectionAsync(collectionName);
-
-        return data;
+        return _this.getCollectionAsync(collectionName);
       });
 
     return this.getCollectionAsync(collectionName);
@@ -60,7 +58,7 @@ class FileBaser {
     let collection = DataCompiler.getCollection(this.dbName, collectionName);
 
     if (typeof collection === "undefined")
-      throw new Error("Collection requested does not exist");
+      throw new Error("Requested collection does not exist");
 
     collection.database = this.dbName;
 
