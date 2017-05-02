@@ -2,6 +2,9 @@ language: node_js
 node_js:
   - "6"
 
+before_install:
+  - gem update --system 1.8.30
+
 install:
   - npm install -g codecov
   - npm install -g istanbul
