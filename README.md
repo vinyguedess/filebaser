@@ -6,6 +6,8 @@
 ![Licence](https://img.shields.io/npm/l/filebaser.svg)<br />
 Filebaser is an engine for managing database documents like MongoDB.
 
+<a href="https://app.codesponsor.io/link/XqEJvfQeAHfhuc1Pw5x19g9K/vinyguedess/filebaser" rel="nofollow"><img src="https://app.codesponsor.io/embed/XqEJvfQeAHfhuc1Pw5x19g9K/vinyguedess/filebaser.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
+
 ### Installation
 All dependencies of Filebaser are easily installed by npm.
 ```bash
