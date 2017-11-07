@@ -16,7 +16,7 @@ All dependencies of Filebaser are easily installed by npm.
 ### Declaration
 How to declare:
 ```javascript
-    const FileBaser = require('filebase');
+    const FileBaser = require('filebaser');
 
     let fb = new FileBaser('databasefile.db');
 ```
@@ -64,7 +64,7 @@ For inserting and updating data we use a pattern similar to an ORM
     let collection = fb.getCollection('users');
 
     let obj = {
-        name: 'filebase',
+        name: 'filebaser',
         login: 'file.baser',
         pass: 'file@123baser#',
         age: 24,

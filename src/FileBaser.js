@@ -114,5 +114,4 @@ class FileBaser {
     return DataCompiler.dropCollectionAsync(this.dbName, collectionName);
   }
 }
-
 module.exports = FileBaser;
